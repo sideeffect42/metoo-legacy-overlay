@@ -10,7 +10,7 @@ HOMEPAGE="http://www.qtrac.eu/diffpdf.html"
 SRC_URI="http://www.qtrac.eu/${P}.tar.gz"
 
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 arm ~x86"
 SLOT="0"
 IUSE=""
 
