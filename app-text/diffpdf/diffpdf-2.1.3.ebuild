@@ -15,7 +15,7 @@ SLOT="0"
 IUSE=""
 
 DEPEND="
-	app-text/poppler:=[qt4]
+	app-text/poppler[qt4]
 	>=dev-qt/qtcore-4.6:4
 	>=dev-qt/qtgui-4.6:4
 "
