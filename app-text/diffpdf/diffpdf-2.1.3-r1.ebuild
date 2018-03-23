@@ -35,7 +35,7 @@ DOCS="README"
 src_prepare() {
 	if use qt5; then
 		# Patch the code just enough so that it builds with Qt5
-	        epatch "${FILESDIR}/${P}-qt5.patch"
+		epatch "${FILESDIR}/${P}-qt5.patch"
 	fi
 }
 
