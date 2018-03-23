@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit flag-o-matic multibuilds qmake-utils
+inherit flag-o-matic multibuild qmake-utils
 
 MY_P=QScintilla_gpl-${PV/_pre/.dev}
 
