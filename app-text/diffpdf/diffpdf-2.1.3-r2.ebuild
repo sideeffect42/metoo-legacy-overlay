@@ -16,12 +16,12 @@ IUSE="qt5"
 
 RDEPEND="
 	!qt5? (
-		app-text/poppler:[qt4]
+		app-text/poppler[qt4]
 		>=dev-qt/qtcore-4.6:4
 		>=dev-qt/qtgui-4.6:4
 	)
 	qt5? (
-		app-text/poppler:[qt5]
+		app-text/poppler[qt5]
 		dev-qt/qtcore:5
 		dev-qt/qtgui:5
 		dev-qt/qtprintsupport:5
