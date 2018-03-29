@@ -15,7 +15,7 @@ LICENSE="LGPL-2+"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux"
 IUSE="
-	alsa coreaudio debug jack oss portaudio pulseaudio qt5
+	alsa coreaudio debug jack oss portaudio pulseaudio qt4 qt5
 	cpu_flags_x86_sse cpu_flags_x86_sse2 cpu_flags_x86_sse4_1
 	cpu_flags_arm_neon
 "
@@ -25,6 +25,10 @@ RDEPEND="
 	jack? ( virtual/jack[${MULTILIB_USEDEP}] )
 	portaudio? ( >=media-libs/portaudio-19_pre20111121-r1[${MULTILIB_USEDEP}] )
 	pulseaudio? ( >=media-sound/pulseaudio-2.1-r1[${MULTILIB_USEDEP}] )
+	qt4? (
+		dev-qt/qtcore:4
+		dev-qt/qtgui:4
+	)
 	qt5? (
 		dev-qt/qtcore:5
 		dev-qt/qtgui:5
@@ -33,6 +37,8 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}
 	oss? ( virtual/os-headers )"
+
+REQUIRED_USE="?? ( qt4 qt5 )"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -52,11 +58,19 @@ src_configure() {
 			-DALSOFT_CPUEXT_SSE2=$(usex cpu_flags_x86_sse2)
 			-DALSOFT_CPUEXT_SSE4_1=$(usex cpu_flags_x86_sse4_1)
 			-DALSOFT_UTILS=$(multilib_is_native_abi && echo "ON" || echo "OFF")
-			-DALSOFT_NO_CONFIG_UTIL=$(usex qt5 "$(multilib_is_native_abi && echo "OFF" || echo "ON")" ON)
 			-DALSOFT_EXAMPLES=OFF
 		)
 
 		use cpu_flags_arm_neon && mycmakeargs+=( -DALSOFT_CPUEXT_NEON=$(usex cpu_flags_arm_neon) )
+
+		if use qt4 || use qt5; then
+			if use qt4; then
+				mycmakeargs+=( -DALSOFT_NO_QT5=TRUE )
+			fi
+			mycmakeargs+=( -DALSOFT_NO_CONFIG_UTIL=$(multilib_is_native_abi && echo "OFF" || echo "ON") )
+		else
+			mycmakeargs+=( -DALSOFT_NO_CONFIG_UTIL=ON )
+		fi
 
 		cmake-utils_src_configure
 	}
