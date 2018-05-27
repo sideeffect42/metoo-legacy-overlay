@@ -26,7 +26,7 @@ fi
 
 LICENSE="gnuplot bitmap? ( free-noncomm )"
 SLOT="0"
-IUSE="aqua bitmap cairo compat doc examples +gd ggi latex libcaca libcerf lua qt5 readline regis svga wxwidgets X"
+IUSE="aqua bitmap cairo compat doc examples +gd ggi latex libcaca libcerf lua qt4 qt5 readline regis svga wxwidgets X"
 
 RDEPEND="
 	cairo? (
@@ -41,6 +41,9 @@ RDEPEND="
 			>=dev-texlive/texlive-latexrecommended-2008-r2 ) )
 	libcaca? ( media-libs/libcaca )
 	lua? ( dev-lang/lua:0 )
+	qt4? ( >=dev-qt/qtcore-4.5:4
+		>=dev-qt/qtgui-4.5:4
+		>=dev-qt/qtsvg-4.5:4 )
 	qt5? ( dev-qt/qtcore:5=
 		dev-qt/qtgui:5=
 		dev-qt/qtnetwork:5=
@@ -64,6 +67,10 @@ DEPEND="${RDEPEND}
 		app-text/ghostscript-gpl )
 	qt5? ( dev-qt/linguist-tools:5 )"
 
+REQUIRED_USE="
+	qt4? ( !qt5 )
+	qt5? ( !qt4 )"
+
 S="${WORKDIR}/${MY_P}"
 
 GP_VERSION="${PV%.*}"
@@ -86,6 +93,12 @@ src_prepare() {
 	# Add special version identification as required by provision 2
 	# of the gnuplot license
 	sed -i -e "1s/.*/& (Gentoo revision ${PR})/" PATCHLEVEL || die
+
+	# hacky workaround
+	# Please hack the buildsystem if you like
+	if use prefix && use qt4; then
+		append-ldflags -Wl,-rpath,"${EPREFIX}"/usr/$(get_libdir)/qt4
+	fi
 
 	DOC_CONTENTS='Gnuplot no longer links against pdflib, see the ChangeLog
 		for details. You can use the "pdfcairo" terminal for PDF output.'
@@ -126,6 +139,13 @@ src_configure() {
 
 	use qt5 && append-cxxflags -std=c++11
 
+	local with_qt=""
+	if use qt5; then
+		with_qt=$(use_with qt5 qt qt5)
+	else
+		with_qt=$(use_with qt4 qt qt4)
+	fi
+
 	econf \
 		--with-texdir="${TEXMF}/tex/latex/${PN}" \
 		--with-readline=$(usex readline gnu builtin) \
@@ -143,7 +163,7 @@ src_configure() {
 		$(use_with svga linux-vga) \
 		$(use_with X x) \
 		--enable-stats \
-		$(use_with qt5 qt qt5) \
+		${with_qt} \
 		$(use_enable wxwidgets) \
 		DIST_CONTACT="https://bugs.gentoo.org/" \
 		EMACS=no
