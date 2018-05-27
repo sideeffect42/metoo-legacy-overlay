@@ -72,6 +72,8 @@ RDEPEND="
 
 MULTILIB_WRAPPED_HEADERS=( /usr/include/avahi-qt5/qt-watch.h )
 
+PATCHES=( "${FILESDIR}/${P}-qt5.patch" )
+
 pkg_preinst() {
 	enewgroup netdev
 	enewgroup avahi
@@ -104,12 +106,6 @@ src_prepare() {
 		# Don't pick up wrong moc based on qtchooser default, bug #587830
 		eapply "${FILESDIR}"/${PN}-0.6.32-mocqt4.patch
 	fi
-
-	if use qt5; then
-		eapply "${FILESDIR}/${P}-qt5.patch"
-	fi
-
-	eapply_user
 
 	# Prevent .pyc files in DESTDIR
 	>py-compile
