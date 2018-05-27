@@ -28,8 +28,7 @@ COMMON_DEPEND=">=dev-lang/perl-5.6
 	exif? ( >=media-libs/libexif-0.6.19:= )
 	libnotify? ( >=x11-libs/libnotify-0.7:= )
 	pcre? ( >=dev-libs/libpcre-6:= )
-	udisks? ( virtual/libgudev:= )
-	xfce_plugins_trash? ( >=xfce-base/xfce4-panel-4.10:= )"
+	udisks? ( virtual/libgudev:= )"
 RDEPEND="${COMMON_DEPEND}
 	>=dev-util/desktop-file-utils-0.20-r1
 	x11-misc/shared-mime-info
