@@ -244,7 +244,7 @@ src_install() {
 
 	# Remove desktop and autostart files
 	# Gentoo Bug: https://bugs.gentoo.org/show_bug.cgi?id=638770
-	use qt5 || {
+	use qt4 || use qt5 || {
 		rm -Rf "${ED}"/usr/share/applications "${ED}"/etc/xdg
 	}
 
