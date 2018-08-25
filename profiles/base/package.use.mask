@@ -1,2 +1,0 @@
-# Mac OS X / iPhone OS specific useflags
-media-video/vlc audioqueue macosx-dialog-provider macosx-eyetv macosx-quartztext macosx-qtkit
