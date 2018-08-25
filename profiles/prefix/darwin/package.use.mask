@@ -1,2 +1,0 @@
-# De-mask of OS X-specific USE-flags that are useful for VLC
-media-video/vlc -audioqueue -macosx-dialog-provider -macosx-eyetv -macosx-quartztext
