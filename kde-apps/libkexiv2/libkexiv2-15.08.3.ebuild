@@ -12,6 +12,7 @@ KEYWORDS="amd64 ~arm x86"
 IUSE="debug +xmp"
 
 DEPEND="
+	kde-frameworks/kdelibs:4
 	>=media-gfx/exiv2-0.24:=[xmp=]
 	virtual/jpeg:0
 "
