@@ -3,6 +3,9 @@
 
 EAPI=6
 
+KDE_REQUIRED="optional"
+KDEVPLATFORM_REQUIRED="optional"
+
 inherit kde4-base
 
 DESCRIPTION="KDE Image Plugin Interface: an exiv2 library wrapper"
