@@ -18,7 +18,7 @@ COMMON_DEPEND=">=dev-lang/lua-5.1
 	dev-libs/libev
 	>=dev-libs/libxdg-basedir-1
 	media-libs/imlib2[png]
-	x11-libs/cairo[xcb]
+	|| ( <x11-libs/cairo-1.16.0-r3[xcb] >=x11-libs/cairo-1.16.0-r3 )
 	|| ( <x11-libs/libX11-1.3.99.901[xcb] >=x11-libs/libX11-1.3.99.901 )
 	>=x11-libs/libxcb-1.6
 	x11-libs/libXcursor
