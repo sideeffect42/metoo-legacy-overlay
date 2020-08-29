@@ -1,9 +1,9 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
-inherit qt4-r2 eutils qmake-utils
+inherit eutils qmake-utils
 
 DESCRIPTION="Program that textually or visually compares two PDF files"
 HOMEPAGE="http://www.qtrac.eu/diffpdf.html"
