@@ -1,9 +1,9 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
-inherit qt4-r2 desktop eutils qmake-utils
+inherit desktop eutils qmake-utils
 
 DESCRIPTION="Program that textually or visually compares two PDF files"
 HOMEPAGE="http://www.qtrac.eu/diffpdf.html"
@@ -14,6 +14,7 @@ KEYWORDS="amd64 arm x86"
 SLOT="0"
 IUSE="qt5"
 
+BDPENED="qt5? ( dev-qt/linguist-tools:5 )"
 RDEPEND="
 	!qt5? (
 		app-text/poppler[qt4]
@@ -26,9 +27,7 @@ RDEPEND="
 		dev-qt/qtgui:5
 	)
 "
-DEPEND="${RDEPEND}
-	qt5? ( dev-qt/linguist-tools:5 )
-"
+DEPEND="${RDEPEND}"
 
 DOCS="README"
 
