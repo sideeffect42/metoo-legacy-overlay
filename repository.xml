@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<repositories version="1.0">
+	<repo priority="50" quality="experimental" status="unofficial">
+		<name>metoo-legacy</name>
+		<description>Collection of (random) old ebuilds</description>
+		<homepage>https://github.com/sideeffect42/metoo-legacy-overlay</homepage>
+		<owner>
+		</owner>
+		<source type="git">https://github.com/sideeffect42/metoo-legacy-overlay.git</source>
+	</repo>
+</repositories>
